@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     const int LAVA_LAYER = 7;
     const int LEGS_LAYER = 8;
 
+    const int END_LAYER = 9;
+
     private AudioManager audioManager = new AudioManager();
     
     // private ScoreKeeper scoreKeeper = new ScoreKeeper();
@@ -120,6 +122,12 @@ public class PlayerScript : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("lava");
                 Debug.Log("fell to lava... dead"); 
                 // System.Threading.Thread.Sleep(400);
+                Destroy(this.gameObject);
+                break;
+
+            case END_LAYER:
+                Debug.Log("Level Cleared!");
+                FindObjectOfType<AudioManager>().Play("clear");
                 Destroy(this.gameObject);
                 break;
             
