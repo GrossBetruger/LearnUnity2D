@@ -8,7 +8,10 @@ public class PlayerScript : MonoBehaviour
     const int LAVA_LAYER = 7;
     const int LEGS_LAYER = 8;
 
-    const int END_LAYER = 9;
+    const int SCORE_LAYER = 9;
+
+    const int END_LAYER = 10;
+
 
     private AudioManager audioManager = new AudioManager();
     
@@ -113,7 +116,7 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("found coin!"); 
                 // audioManager.Play("coin");
                 FindObjectOfType<AudioManager>().Play("coin");
-                FindObjectOfType<ScoreKeeper>().score += 1;
+                FindObjectOfType<ScoreKeeper>().coins += 1;
                 // scoreKeeper.score += 1;
                 Destroy(other.gameObject);
                 break;
@@ -125,9 +128,15 @@ public class PlayerScript : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
 
+            case SCORE_LAYER:
+                Debug.Log("Score Counting...");
+                FindObjectOfType<ScoreKeeper>().clearLevel();
+                FindObjectOfType<AudioManager>().Play("clear");
+                // Destroy(this.gameObject);
+                break;
+            
             case END_LAYER:
                 Debug.Log("Level Cleared!");
-                FindObjectOfType<AudioManager>().Play("clear");
                 Destroy(this.gameObject);
                 break;
             
@@ -135,10 +144,5 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Undefined Collision, layer: " + layer);
                 break;
         }
-        // Debug.Log("layer " + other.gameObject.layer);
-        // if (other.gameObject.layer == COIN_LAYER) {
-        //     Debug.Log("found coin!"); 
-        //     Destroy(other.gameObject);    	
-        // } 
     }
 }
