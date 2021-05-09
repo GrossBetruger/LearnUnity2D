@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
- using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {   
@@ -126,7 +126,7 @@ public class PlayerScript : MonoBehaviour
             case LAVA_LAYER:
                 FindObjectOfType<AudioManager>().Play("lava");
                 Debug.Log("fell to lava... dead"); 
-                System.Threading.Thread.Sleep(1500);
+                // System.Threading.Thread.Sleep(1500);
                 SceneManager.LoadScene("Level1");
                 break;
 
@@ -139,8 +139,8 @@ public class PlayerScript : MonoBehaviour
             
             case END_LAYER:
                 Debug.Log("Level Cleared!");
-                Destroy(this.gameObject);
-                SceneManager.LoadScene("Level2");
+                // Destroy(this.gameObject);
+                FindObjectOfType<LevelManager>().ClearLevel();
                 // Application.Quit();
                 break;
             
