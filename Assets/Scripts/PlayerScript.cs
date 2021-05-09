@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+ using UnityEngine.SceneManagement;
+
 public class PlayerScript : MonoBehaviour
 {   
     const int COIN_LAYER = 6;
@@ -124,8 +126,8 @@ public class PlayerScript : MonoBehaviour
             case LAVA_LAYER:
                 FindObjectOfType<AudioManager>().Play("lava");
                 Debug.Log("fell to lava... dead"); 
-                // System.Threading.Thread.Sleep(400);
-                Destroy(this.gameObject);
+                System.Threading.Thread.Sleep(1500);
+                SceneManager.LoadScene("Level1");
                 break;
 
             case SCORE_LAYER:
@@ -138,7 +140,8 @@ public class PlayerScript : MonoBehaviour
             case END_LAYER:
                 Debug.Log("Level Cleared!");
                 Destroy(this.gameObject);
-                Application.Quit();
+                SceneManager.LoadScene("Level2");
+                // Application.Quit();
                 break;
             
             default:
