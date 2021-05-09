@@ -139,7 +139,7 @@ public class PlayerScript : MonoBehaviour
             
             case END_LAYER:
                 Debug.Log("Level Cleared!");
-                // Destroy(this.gameObject);
+                Destroy(this.gameObject);
                 FindObjectOfType<LevelManager>().ClearLevel();
                 // Application.Quit();
                 break;
