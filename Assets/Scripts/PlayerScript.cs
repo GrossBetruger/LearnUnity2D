@@ -126,8 +126,7 @@ public class PlayerScript : MonoBehaviour
             case LAVA_LAYER:
                 FindObjectOfType<AudioManager>().Play("lava");
                 Debug.Log("fell to lava... dead"); 
-                // System.Threading.Thread.Sleep(1500);
-                SceneManager.LoadScene("Level1");
+                FindObjectOfType<LevelManager>().Respawn();
                 break;
 
             case SCORE_LAYER:

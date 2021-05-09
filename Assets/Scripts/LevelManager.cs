@@ -39,6 +39,11 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    public void Respawn() {
+        Debug.Log("respawning...");
+        SceneManager.LoadScene(this.sceneName);
+    }
+
     public void ClearLevel()
     {
         Debug.Log("clearing level...");
@@ -48,14 +53,8 @@ public class LevelManager : MonoBehaviour
         Debug.Log("current level: " + currentLevelCode);
         int nextLevelCode = (currentLevelCode + 1) % numLevels; 
         Debug.Log("next level: " + nextLevelCode);
-        // System.Threading.Thread.Sleep(1500);
         string nextLevel;
         this.levelCodeToLevel.TryGetValue(nextLevelCode, out nextLevel);
-        // if (nextLevel.Equals("end")) {
-        //       Application.Quit();
-        // }
-        // else {
         SceneManager.LoadScene(nextLevel);
-        // }
     }
 }
